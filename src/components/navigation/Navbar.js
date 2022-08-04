@@ -1,13 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun } from "@fortawesome/free-regular-svg-icons";
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  Button,
-  Badge,
-  ToggleButtonGroup,
-  ToggleButton,
-} from "react-bootstrap";
+import { Button, Badge } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/Navbar";
@@ -17,8 +13,21 @@ import Register from "../modal/Register";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const theme = localStorage.getItem("themeNavbarFakeStore");
+  const [darkMode, setIsDarkMode] = useState(theme ? theme : "light");
+  const [loginModal, setLoginModal] = useState(false);
+  const [registerModal, setRegisterModal] = useState(false);
+
+  const changeDarkMode = () => {
+    darkMode === "light" ? setIsDarkMode("dark") : setIsDarkMode("light");
+  };
+
+  useEffect(() => {
+    localStorage.setItem("themeNavbarFakeStore", darkMode);
+  }, [darkMode]);
+
   return (
-    <NavBar bg="light" variant="light" expand="lg">
+    <NavBar bg={darkMode} variant={darkMode} expand="lg">
       <Container>
         <NavBar.Brand className="fw-bold fs-3 py-1">
           <Nav.Link as={Link} to="/">
@@ -34,7 +43,7 @@ const Navbar = () => {
             <NavDropdown
               title="Categories"
               id="nav-dropdown-light-example"
-              menuVariant="light"
+              menuVariant={darkMode}
             >
               <NavDropdown.Item id="women">Women's Clothing</NavDropdown.Item>
               <NavDropdown.Item id="men">Men's Clothing</NavDropdown.Item>
@@ -52,33 +61,41 @@ const Navbar = () => {
               Contact
             </Nav.Link>
           </Nav>
-          <Button className="me-2" variant="outline-warning">
+          <Button
+            className="me-2"
+            variant="outline-warning"
+            onClick={() => {
+              setLoginModal(true);
+            }}
+          >
             Log In
           </Button>
-          <Login />
-          <Button className="me-2" variant="success">
+          <Login show={loginModal} onHide={() => setLoginModal(false)} />
+          <Button
+            className="me-2"
+            variant="success"
+            onClick={() => setRegisterModal(true)}
+          >
             Sign Up
           </Button>
-          <Register />
+          <Register
+            show={registerModal}
+            onHide={() => setRegisterModal(false)}
+          />
           <Nav.Link as={Link} to="/cart">
             <Button className="me-3" variant="outline-info">
               Cart <Badge bg="info">9</Badge>
             </Button>
           </Nav.Link>
-          <ToggleButtonGroup
-            className="me-2"
-            size="sm"
-            name="options"
-            defaultValue={1}
-          >
-            <ToggleButton id="tbg-radio-1" value={1}>
-              EN
-            </ToggleButton>
-            <ToggleButton id="tbg-radio-2" value={2} variant="warning">
-              UA
-            </ToggleButton>
-          </ToggleButtonGroup>
-          <FontAwesomeIcon className="fs-4" icon={faSun} />
+
+          <FontAwesomeIcon
+            className="fs-4"
+            style={{ color: darkMode === "light" ? "black" : "white" }}
+            icon={darkMode === "light" ? faSun : faMoon}
+            onClick={() => {
+              changeDarkMode();
+            }}
+          />
         </NavBar.Collapse>
       </Container>
     </NavBar>
