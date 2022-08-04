@@ -1,11 +1,7 @@
 import "./App.css";
+import MainRouter from "./routes/MainRouter";
 
 function App() {
-  return (
-    <div>
-      <h1>FakeShop</h1>
-    </div>
-  );
+  return <MainRouter />;
 }
-
 export default App;
