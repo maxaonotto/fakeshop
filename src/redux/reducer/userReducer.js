@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const isLoginReducer = createSlice({
+const userReducer = createSlice({
   name: "user",
   initialState: {
     userData: {},
@@ -8,4 +8,5 @@ const isLoginReducer = createSlice({
   },
   reducers: {},
 });
-export default isLoginReducer.reducer;
+
+export default userReducer.reducer;

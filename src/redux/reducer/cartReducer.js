@@ -7,4 +7,5 @@ const cartReducer = createSlice({
   },
   reducer: {},
 });
+
 export default cartReducer.reducer;
