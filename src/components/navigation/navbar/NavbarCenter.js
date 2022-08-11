@@ -10,12 +10,12 @@ const NavbarCenter = ({ darkMode }) => {
         {t("Navbar.Home")}
       </Nav.Link>
       <NavDropdown
+        className="me-0"
         title={t("Navbar.Category.Categories")}
         id="nav-dropdown-light-example"
         menuVariant={darkMode}
       >
         <NavDropdown.Item id="women">
-          {" "}
           {t("Navbar.Category.WomensClothing")}
         </NavDropdown.Item>
         <NavDropdown.Item id="men">
@@ -32,12 +32,8 @@ const NavbarCenter = ({ darkMode }) => {
           {t("Navbar.Category.Allproducts")}
         </NavDropdown.Item>
       </NavDropdown>
-      <Nav.Link as={Link} to="/about">
-        {t("Navbar.About")}
-      </Nav.Link>
-      <Nav.Link as={Link} to="/contact">
-        {t("Navbar.Contact")}
-      </Nav.Link>
+      <Nav.Link href="#about">{t("Navbar.About")}</Nav.Link>
+      <Nav.Link href="#contact">{t("Navbar.Contact")}</Nav.Link>
     </Nav>
   );
 };

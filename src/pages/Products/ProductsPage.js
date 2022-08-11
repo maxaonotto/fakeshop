@@ -1,11 +1,15 @@
 import React from "react";
 import Navbar from "../../components/navigation/Navbar";
+import Products from "../../components/product/Products";
+import useDarkMode from "../../hooks/useDarkMode";
 
 const ProductsPage = () => {
+  const [darkMode, setIsDarkMode] = useDarkMode();
+
   return (
     <div>
-      <Navbar />
-      <h1>Products</h1>
+      <Navbar darkMode={darkMode} setIsDarkMode={setIsDarkMode} />
+      <Products />
     </div>
   );
 };
