@@ -1,0 +1,22 @@
+{
+    "Navbar":{
+        "Home": "Home",
+        "Category": {
+            "Categories":"Categories",
+            "WomensClothing":"Women's Clothing",
+            "MensClothing": "Men's Clothing",
+            "Jewelery": "Jewelery",
+            "Electronics":"Electronics",
+            "Allproducts": "All products"
+        },
+        "About": "About",
+        "Contact": "Contact",
+        "LogIn" : "Log In",
+        "SignUp" : "Sign up",
+        "Cart" : "Cart ",
+        "Language": {
+            "EN": "EN",
+            "UA": "UA"
+        }
+    }
+}

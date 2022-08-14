@@ -1,0 +1,22 @@
+{
+    "Navbar":{
+        "Home": "Головна",
+        "Category": {
+            "Categories":"Категорії",
+            "WomensClothing":"Жіночий одяг",
+            "MensClothing": "Чоловічий одяг",
+            "Jewelery": "Біжутерія",
+            "Electronics":"Техніка",
+            "Allproducts": "Усі товари"
+        },
+        "About": "Про нас",
+        "Contact": "Контакти",
+        "LogIn" : "Вхід",
+        "SignUp" : "Реєстрація",
+        "Cart" : "Корзина ",
+        "Language": {
+            "EN": "АНГ",
+            "UA": "УКР"
+        }
+    }
+}
