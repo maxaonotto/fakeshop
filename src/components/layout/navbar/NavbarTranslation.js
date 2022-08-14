@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
-import { changeLanguage } from "../../../service/serviceForNavbar";
+import { changeLanguage } from "../../../util/utilForNavbar";
+import { Context } from "../../../util/utilForTheme";
 
-const NavbarTranslation = ({ t, i18n }) => {
+const NavbarTranslation = () => {
+  const { t, i18n } = useContext(Context);
+
   return (
     <ToggleButtonGroup
       className="me-2"

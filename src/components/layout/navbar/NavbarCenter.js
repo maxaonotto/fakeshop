@@ -3,7 +3,7 @@ import { t } from "i18next";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const NavbarCenter = ({ darkMode }) => {
+const NavbarCenter = ({ themeMode }) => {
   return (
     <Nav className="mx-auto fs-5">
       <Nav.Link as={Link} to="/">
@@ -13,7 +13,7 @@ const NavbarCenter = ({ darkMode }) => {
         className="me-0"
         title={t("Navbar.Category.Categories")}
         id="nav-dropdown-light-example"
-        menuVariant={darkMode}
+        menuVariant={themeMode}
       >
         <NavDropdown.Item id="women">
           {t("Navbar.Category.WomensClothing")}
