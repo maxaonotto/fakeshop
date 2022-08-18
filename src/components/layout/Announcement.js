@@ -4,10 +4,10 @@ import {
   Context,
   makeThemeBgColor,
   makeThemeTextColor,
-} from "../../util/utilForTheme";
+} from "../../util/ThemeUtil";
 
 const Announcement = () => {
-  const { themeMode } = useContext(Context);
+  const { t, themeMode } = useContext(Context);
   return (
     <Container
       fluid
@@ -16,7 +16,7 @@ const Announcement = () => {
     >
       <Row>
         <Col className={`text-${makeThemeTextColor({ themeMode })}`}>
-          Fashion everywhere
+          {t("Announcement")}
         </Col>
       </Row>
     </Container>

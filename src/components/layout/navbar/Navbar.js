@@ -11,7 +11,7 @@ import NavbarCenter from "./NavbarCenter";
 import NavbarAuthorization from "./NavbarAuthorization";
 import NavbarTheme from "./NavbarTheme";
 import NavbarTranslation from "./NavbarTranslation";
-import { Context } from "../../../util/utilForTheme";
+import { Context } from "../../../util/ThemeUtil";
 
 const Navbar = () => {
   const { themeMode, t } = useContext(Context);

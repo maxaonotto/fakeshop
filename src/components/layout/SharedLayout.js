@@ -3,7 +3,7 @@ import useTheme from "../../hooks/useTheme";
 import Navbar from "./navbar/Navbar";
 import Footer from "./Footer";
 import Announcement from "./Announcement";
-import { Context } from "../../util/utilForTheme";
+import { Context } from "../../util/ThemeUtil";
 import { useTranslation } from "react-i18next";
 
 export default function Layout() {

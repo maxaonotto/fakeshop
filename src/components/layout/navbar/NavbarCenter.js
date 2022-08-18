@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { t } from "i18next";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Context } from "../../../util/ThemeUtil";
 
-const NavbarCenter = ({ themeMode }) => {
+const NavbarCenter = () => {
+  const { themeMode } = useContext(Context);
+
+  const setFilter = (cat) => {
+    // const updatedList = data.filter((x) => x.category === cat);
+    // setFilter(updatedList);
+  };
+
   return (
     <Nav className="mx-auto fs-5">
       <Nav.Link as={Link} to="/">
@@ -15,16 +23,19 @@ const NavbarCenter = ({ themeMode }) => {
         id="nav-dropdown-light-example"
         menuVariant={themeMode}
       >
-        <NavDropdown.Item id="women">
+        <NavDropdown.Item id="women" onClick={() => setFilter("women")}>
           {t("Navbar.Category.WomensClothing")}
         </NavDropdown.Item>
-        <NavDropdown.Item id="men">
+        <NavDropdown.Item id="men" onClick={() => setFilter("men")}>
           {t("Navbar.Category.MensClothing")}
         </NavDropdown.Item>
-        <NavDropdown.Item id="jewelery">
+        <NavDropdown.Item id="jewelery" onClick={() => setFilter("jewelery")}>
           {t("Navbar.Category.Jewelery")}
         </NavDropdown.Item>
-        <NavDropdown.Item id="electronics">
+        <NavDropdown.Item
+          id="electronics"
+          onClick={() => setFilter("electronics")}
+        >
           {t("Navbar.Category.Electronics")}
         </NavDropdown.Item>
         <NavDropdown.Divider />

@@ -4,9 +4,10 @@ import {
   Context,
   makeThemeBgColor,
   makeThemeTextColor,
-} from "../../util/utilForTheme";
+} from "../../util/ThemeUtil";
+
 const Footer = () => {
-  const { themeMode } = useContext(Context);
+  const { t, themeMode } = useContext(Context);
   return (
     <Container
       fluid
@@ -15,7 +16,7 @@ const Footer = () => {
     >
       <Row>
         <Col className={`text-${makeThemeTextColor({ themeMode })}`}>
-          Copyright &copy; FakeShop
+          {t("Footer")} &copy; FakeShop
         </Col>
       </Row>
     </Container>
