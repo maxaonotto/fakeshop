@@ -12,16 +12,15 @@ import NavbarCenter from "./navbar/NavbarCenter";
 import NavbarLayout from "./navbar/NavbarLayout";
 import NavbarTheme from "./navbar/NavbarTheme";
 import NavbarTranslation from "./navbar/NavbarTranslation";
-import useDarkMode from "../../hooks/useDarkMode";
 
-const Navbar = () => {
-  const [darkMode, setIsDarkMode] = useDarkMode();
+const Navbar = ({ darkMode, setIsDarkMode }) => {
   const { t, i18n } = useTranslation();
 
   return (
     <NavBar bg={darkMode} variant={darkMode} expand="lg">
       <Container>
         <NavbarLogo />
+        <NavBar.Toggle aria-controls="navbar-light-example" />
         <NavBar.Collapse id="navbar-light-example">
           <NavbarCenter darkMode={darkMode} />
           <NavbarLayout />
@@ -31,9 +30,9 @@ const Navbar = () => {
               <Badge bg="info">9</Badge>
             </Button>
           </Nav.Link>
+          <NavbarTranslation t={t} i18n={i18n} />
+          <NavbarTheme darkMode={darkMode} setIsDarkMode={setIsDarkMode} />
         </NavBar.Collapse>
-        <NavbarTranslation t={t} i18n={i18n} />
-        <NavbarTheme darkMode={darkMode} setIsDarkMode={setIsDarkMode} />
       </Container>
     </NavBar>
   );
