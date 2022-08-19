@@ -1,37 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 import { Button, Badge } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/Navbar";
 
-import NavbarLogo from "./navbar/NavbarLogo";
-import NavbarCenter from "./navbar/NavbarCenter";
-import NavbarLayout from "./navbar/NavbarLayout";
-import NavbarTheme from "./navbar/NavbarTheme";
-import NavbarTranslation from "./navbar/NavbarTranslation";
+import NavbarLogo from "./NavbarLogo";
+import NavbarCenter from "./NavbarCenter";
+import NavbarAuthorization from "./NavbarAuthorization";
+import NavbarTheme from "./NavbarTheme";
+import NavbarTranslation from "./NavbarTranslation";
+import { Context } from "../../../util/utilForTheme";
 
-const Navbar = ({ darkMode, setIsDarkMode }) => {
-  const { t, i18n } = useTranslation();
-
+const Navbar = () => {
+  const { themeMode, t } = useContext(Context);
   return (
-    <NavBar bg={darkMode} variant={darkMode} expand="lg">
+    <NavBar bg={themeMode} variant={themeMode} expand="lg">
       <Container>
         <NavbarLogo />
         <NavBar.Toggle aria-controls="navbar-light-example" />
         <NavBar.Collapse id="navbar-light-example">
-          <NavbarCenter darkMode={darkMode} />
-          <NavbarLayout />
+          <NavbarCenter themeMode={themeMode} />
+          <NavbarAuthorization />
           <Nav.Link as={Link} to="/cart">
             <Button className="me-3" variant="outline-info">
               {t("Navbar.Cart")}
               <Badge bg="info">9</Badge>
             </Button>
           </Nav.Link>
-          <NavbarTranslation t={t} i18n={i18n} />
-          <NavbarTheme darkMode={darkMode} setIsDarkMode={setIsDarkMode} />
+          <NavbarTranslation />
+          <NavbarTheme />
         </NavBar.Collapse>
       </Container>
     </NavBar>

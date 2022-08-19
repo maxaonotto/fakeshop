@@ -6,17 +6,20 @@ import UserPage from "../pages/User/UserPage";
 import AdminPage from "../pages/User/Admin/AdminPage";
 import ProductsPage from "../pages/Products/ProductsPage";
 import ProductPage from "../pages/Products/Product/ProductPage";
+import SharedLayout from "../components/layout/SharedLayout";
 
 const MainRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/product" element={<ProductPage />} />
-        <Route path="/user" element={<UserPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="products" element={<ProductsPage />} />
+          <Route path="product" element={<ProductPage />} />
+          <Route path="user" element={<UserPage />} />
+          <Route path="admin" element={<AdminPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

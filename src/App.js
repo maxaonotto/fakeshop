@@ -8,7 +8,7 @@ function App() {
   return (
     <Provider store={store}>
       <Suspense>
-        <MainRouter />;
+        <MainRouter />
       </Suspense>
     </Provider>
   );
