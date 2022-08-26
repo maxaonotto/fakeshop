@@ -19,7 +19,6 @@ const CartProducts = () => {
   const { themeMode } = useContext(Context);
   const { cartList } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-
   return (
     <>
       <Row style={{ fontSize: 18 }} className="d-flex text-uppercase">
@@ -31,13 +30,10 @@ const CartProducts = () => {
       <Row>
         {cartList.map((product) => (
           <Row key={product.id} className=" my-2">
-            <Card className={``}>
+            <Card>
               <Card.Body
-                className={`d-flex flex-row mx-1 px-1 text-${makeThemeTextColor(
-                  {
-                    themeMode,
-                  }
-                )}`}
+                className={`d-flex flex-row mx-1 px-1 
+                text-${makeThemeTextColor({ themeMode })}`}
               >
                 <Col sm={4} className="d-flex flex-row text-center">
                   <Card.Img
@@ -76,15 +72,17 @@ const CartProducts = () => {
                     <Button
                       variant="dark"
                       className="m-2"
-                      onClick={() => dispatch(decreaseQuantity(product.id))}
+                      onClick={() => dispatch(decreaseQuantity(product))}
                     >
                       -
                     </Button>
-                    <Form.Label className="fs-5 fw-bold ">1</Form.Label>
+                    <Form.Label className="fs-5 fw-bold ">
+                      {product.productQuantity}
+                    </Form.Label>
                     <Button
                       variant="dark"
                       className="m-2"
-                      onClick={() => dispatch(increaseQuantity(product.id))}
+                      onClick={() => dispatch(increaseQuantity(product))}
                     >
                       +
                     </Button>
@@ -94,7 +92,9 @@ const CartProducts = () => {
                   sm
                   className="d-flex justify-content-center align-items-center"
                 >
-                  <Card.Text className=""> $ Total price</Card.Text>
+                  <Card.Text className="fw-bold fs-5">
+                    $ {product.price * product.productQuantity}
+                  </Card.Text>
                 </Col>
               </Card.Body>
             </Card>

@@ -13,7 +13,7 @@ const EmptyCart = () => {
   return (
     <Container
       fluid
-      style={{ height: "66vh" }}
+      style={{ height: "72vh" }}
       className={`bg-${makeThemeBgColor({ themeMode })} 
        text-center py-5`}
     >
