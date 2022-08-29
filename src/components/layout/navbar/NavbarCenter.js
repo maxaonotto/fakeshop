@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { t } from "i18next";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Context } from "../../../util/ThemeUtil";
+import { ThemeContext } from "../../../util/ThemeUtil";
 
 const NavbarCenter = () => {
-  const { themeMode } = useContext(Context);
+  const { themeMode } = useContext(ThemeContext);
 
   const setFilter = (cat) => {
     // const updatedList = data.filter((x) => x.category === cat);

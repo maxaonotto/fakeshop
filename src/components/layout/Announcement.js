@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import {
-  Context,
+  ThemeContext,
   makeThemeBgColor,
   makeThemeTextColor,
 } from "../../util/ThemeUtil";
 
 const Announcement = () => {
-  const { t, themeMode } = useContext(Context);
+  const { themeMode } = useContext(ThemeContext);
+  const { t } = useTranslation();
   return (
     <Container
       fluid

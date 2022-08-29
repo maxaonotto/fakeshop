@@ -1,3 +1,3 @@
-export const changeLanguage = (lang, i18n) => {
-  i18n.changeLanguage(lang);
+export const changeLanguage = (language, i18n) => {
+  i18n.changeLanguage(language);
 };

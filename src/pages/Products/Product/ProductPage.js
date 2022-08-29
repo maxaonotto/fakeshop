@@ -1,25 +1,23 @@
 import React, { useContext } from "react";
-import { useDispatch } from "react-redux";
-
-import { Button, Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
-  Context,
+  ThemeContext,
   makeThemeBgColor,
   makeThemeTextColor,
 } from "../../../util/ThemeUtil.js";
 import useProductId from "../../../hooks/useProductId.js";
 import { useTranslation } from "react-i18next";
 import { addToCart } from "../../../redux/reducer/cartReducer.js";
+import { useDispatch } from "react-redux";
 
 const ProductPage = () => {
-  const { themeMode } = useContext(Context);
+  const { themeMode } = useContext(ThemeContext);
   const [product] = useProductId();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
   return (
     <Card
       key={product.id}

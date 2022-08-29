@@ -11,11 +11,13 @@ import NavbarCenter from "./NavbarCenter";
 import NavbarAuthorization from "./NavbarAuthorization";
 import NavbarTheme from "./NavbarTheme";
 import NavbarTranslation from "./NavbarTranslation";
-import { Context } from "../../../util/ThemeUtil";
+import { ThemeContext } from "../../../util/ThemeUtil";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
-  const { themeMode, t } = useContext(Context);
+  const { themeMode } = useContext(ThemeContext);
+  const { t } = useTranslation();
   const { cartAmount } = useSelector((state) => state.cart);
   return (
     <NavBar bg={themeMode} variant={themeMode} expand="lg">
@@ -26,9 +28,14 @@ const Navbar = () => {
           <NavbarCenter themeMode={themeMode} />
           <NavbarAuthorization />
           <Nav.Link as={Link} to="/cart">
-            <Button className="me-3" variant="outline-info">
+            <Button
+              className="me-3"
+              variant={`outline-${themeMode === "light" ? "dark" : "light"}`}
+            >
               {t("Navbar.Cart")}
-              <Badge bg="info">{cartAmount}</Badge>
+              <Badge bg={themeMode === "light" ? "dark" : "light"}>
+                {cartAmount}
+              </Badge>
             </Button>
           </Nav.Link>
           <NavbarTranslation />
