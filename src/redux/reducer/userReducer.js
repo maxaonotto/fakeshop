@@ -4,7 +4,7 @@ const userReducer = createSlice({
   name: "user",
   initialState: {
     userData: {},
-    isLogin: false,
+    isLoged: false,
   },
   reducers: {},
 });

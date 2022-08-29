@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Row, Container } from "react-bootstrap";
-import { getProducts } from "../../service/getProducts";
+import useLimitList from "../../hooks/useLimitList";
+import { ThemeContext, makeThemeBgColor } from "../../util/ThemeUtil";
 import Product from "./Product";
 
 const Products = ({ isLimited }) => {
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    isLimited ? getProducts(setList, isLimited) : getProducts(setList);
-  }, [isLimited]);
+  const { themeMode } = useContext(ThemeContext);
+  const [list] = useLimitList(isLimited);
 
   return (
-    <Container className="">
-      <Row className="row-cols-3">
+    <Container fluid className={makeThemeBgColor({ themeMode })}>
+      <Row>
         {list.map((product) => (
           <Product key={product.id} data={product} />
         ))}

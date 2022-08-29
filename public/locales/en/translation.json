@@ -18,5 +18,12 @@
             "EN": "EN",
             "UA": "UA"
         }
+    },
+    "Announcement": "Fashion everywhere",
+    "Rating":"Rating",
+    "Footer":"Copyright",
+    "Buy" : "Buy Now",
+    "Cart":{
+        "Button" : "Add to cart"
     }
 }

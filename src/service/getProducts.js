@@ -1,7 +1,13 @@
 import axios from "axios";
+const productUrl = "https://fakestoreapi.com/products";
 
-export const getProducts = (setList, limit = false) => {
+export const getListOfProducts = (limit = false) => {
+  return axios.get(`${productUrl}${limit ? "?limit=6" : ""}`);
+};
+
+export const getProduct = (id, setState) => {
   axios
-    .get(`https://fakestoreapi.com/products${limit ? "?limit=6" : ""}`)
-    .then((res) => setList(res.data));
+    .get(`${productUrl}/${id}`)
+    .then((res) => setState(res.data))
+    .catch(() => setState({}));
 };
