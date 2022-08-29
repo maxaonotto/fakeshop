@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Button, Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Context } from "../../util/ThemeUtil";
 
 const Product = ({ data }) => {
   const { title, price, image, id } = data;
-  const { t } = useContext(Context);
+  const { t } = useTranslation();
 
   return (
     <Col className="col-md-3 mb-4">

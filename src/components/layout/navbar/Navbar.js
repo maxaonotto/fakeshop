@@ -11,10 +11,12 @@ import NavbarCenter from "./NavbarCenter";
 import NavbarAuthorization from "./NavbarAuthorization";
 import NavbarTheme from "./NavbarTheme";
 import NavbarTranslation from "./NavbarTranslation";
-import { Context } from "../../../util/ThemeUtil";
+import { ThemeContext } from "../../../util/ThemeUtil";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
-  const { themeMode, t } = useContext(Context);
+  const { themeMode } = useContext(ThemeContext);
+  const { t } = useTranslation();
   return (
     <NavBar bg={themeMode} variant={themeMode} expand="lg">
       <Container>
@@ -24,9 +26,9 @@ const Navbar = () => {
           <NavbarCenter themeMode={themeMode} />
           <NavbarAuthorization />
           <Nav.Link as={Link} to="/cart">
-            <Button className="me-3" variant="outline-info">
+            <Button className="me-3" variant="outline-dark">
               {t("Navbar.Cart")}
-              <Badge bg="info">9</Badge>
+              <Badge bg="dark">9</Badge>
             </Button>
           </Nav.Link>
           <NavbarTranslation />

@@ -6,10 +6,10 @@ import fiawn_negate from "../../assets/fiawn_negate.jpg";
 import fashion from "../../assets/fashion.jpg";
 import fashion_negate from "../../assets/fashion_negate.jpg";
 import Carousel from "react-bootstrap/Carousel";
-import { Context } from "../../util/ThemeUtil";
+import { ThemeContext } from "../../util/ThemeUtil";
 
 const Corausel = () => {
-  const { themeMode } = useContext(Context);
+  const { themeMode } = useContext(ThemeContext);
   return (
     <Carousel fade variant={themeMode} controls={false} indicators={false}>
       <Carousel.Item interval={2000}>

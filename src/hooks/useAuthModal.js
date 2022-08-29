@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useModal() {
+export default function useAuthModal() {
   const [modal, setModal] = useState({
     isLogin: false,
     isRegister: false,

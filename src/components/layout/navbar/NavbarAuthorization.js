@@ -1,18 +1,17 @@
 import React from "react";
 import Login from "../../modal/Login";
 import Register from "../../modal/Register";
-import useModal from "../../../hooks/useModal";
+import useAuthModal from "../../../hooks/useAuthModal";
 import { Button } from "react-bootstrap";
 import { t } from "i18next";
 
 const NavbarAuthorization = () => {
-  const [modal, setModal] = useModal();
-
+  const [modal, setModal] = useAuthModal();
   return (
     <div>
       <Button
         className="me-2"
-        variant="outline-warning"
+        variant="outline-dark"
         onClick={() => setModal({ ...modal, isLogin: true })}
       >
         {t("Navbar.LogIn")}
@@ -23,7 +22,7 @@ const NavbarAuthorization = () => {
       />
       <Button
         className="me-2"
-        variant="success"
+        variant="dark"
         onClick={() => setModal({ ...modal, isRegister: true })}
       >
         {t("Navbar.SignUp")}

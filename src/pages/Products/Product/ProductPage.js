@@ -3,16 +3,18 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useProductId from "../../../hooks/useProductId.js";
+import useSingleProduct from "../../../hooks/useSingleProduct.js";
 import {
-  Context,
+  ThemeContext,
   makeThemeBgColor,
   makeThemeTextColor,
 } from "../../../util/ThemeUtil.js";
+import { useTranslation } from "react-i18next";
 
 const ProductPage = () => {
-  const { t, themeMode } = useContext(Context);
-  const [product] = useProductId();
+  const { themeMode } = useContext(ThemeContext);
+  const { t } = useTranslation();
+  const [product] = useSingleProduct();
 
   return (
     <Card

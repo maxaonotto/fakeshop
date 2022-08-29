@@ -12,4 +12,4 @@ export const makeThemeBgColor = ({ themeMode }) => {
   return themeMode === "light" ? "white" : "black";
 };
 
-export const Context = React.createContext();
+export const ThemeContext = React.createContext("light");
