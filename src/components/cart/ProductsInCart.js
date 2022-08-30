@@ -1,27 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { Button, Card, Col, Form, ButtonGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 import { ThemeContext } from "../../util/ThemeUtil.js";
-import {
-  deleteFromCart,
-  increaseQuantity,
-  decreaseQuantity,
-  clearCart,
-  totalPrice,
-} from "../../redux/reducer/cartReducer.js";
+import { deleteFromCart, clearCart } from "../../redux/reducer/cartReducer.js";
 import SubTotalPrice from "./SubTotalPrice.js";
 import { selectCartList } from "../../redux/selectors/index.js";
+import SetQuantity from "./SetQuantity.js";
 
 const CartProducts = () => {
   const { themeMode } = useContext(ThemeContext);
+
   const cartList = useSelector(selectCartList);
   const dispatch = useDispatch();
-  console.log();
-  useEffect(() => {
-    dispatch(totalPrice());
-  }, [cartList, dispatch]);
 
   return (
     <>
@@ -70,30 +62,10 @@ const CartProducts = () => {
                     $ {product.price}
                   </Card.Text>
                 </Col>
-                <Col
-                  sm
-                  className="d-flex justify-content-center align-items-center"
-                >
-                  <ButtonGroup className="border border-dark d-flex justify-content-center align-items-center">
-                    <Button
-                      variant={themeMode === "light" ? "dark" : "light"}
-                      className="m-2"
-                      onClick={() => dispatch(decreaseQuantity(product))}
-                    >
-                      -
-                    </Button>
-                    <Form.Label className="fs-5 fw-bold ">
-                      {product.productQuantity}
-                    </Form.Label>
-                    <Button
-                      variant={themeMode === "light" ? "dark" : "light"}
-                      className="m-2"
-                      onClick={() => dispatch(increaseQuantity(product))}
-                    >
-                      +
-                    </Button>
-                  </ButtonGroup>
-                </Col>
+                <SetQuantity
+                  product={product}
+                  quantity={product.productQuantity}
+                />
                 <Col
                   sm
                   className="d-flex justify-content-center align-items-center"
