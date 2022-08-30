@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteFromCart, clearCart } from "../../redux/reducer/cartReducer.js";
+import { selectCartList } from "../../redux/selectors/index.js";
 import { Link } from "react-router-dom";
 
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { ThemeContext } from "../../util/ThemeUtil.js";
-import { deleteFromCart, clearCart } from "../../redux/reducer/cartReducer.js";
 import SubTotalPrice from "./SubTotalPrice.js";
-import { selectCartList } from "../../redux/selectors/index.js";
 import SetQuantity from "./SetQuantity.js";
 
 const CartProducts = () => {

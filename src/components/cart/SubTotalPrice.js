@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { selectCartTotal } from "../../redux/selectors";
+import { Button, Card } from "react-bootstrap";
 import useTotalPrice from "../../hooks/useTotalPrice.js";
 
 const SubTotalPrice = () => {
