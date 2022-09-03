@@ -12,14 +12,10 @@ import NavbarAuthorization from "./NavbarAuthorization";
 import NavbarTheme from "./NavbarTheme";
 import NavbarTranslation from "./NavbarTranslation";
 import { ThemeContext } from "../../../util/ThemeUtil";
-// import { useSelector } from "react-redux";
-// import { useTranslation } from "react-i18next";
 import NavbarCartButton from "./NavbarCartButton";
 
 const Navbar = () => {
   const { themeMode } = useContext(ThemeContext);
-  // const { t } = useTranslation();
-  // const { cartAmount } = useSelector((state) => state.cart);
   return (
     <NavBar bg={themeMode} variant={themeMode} expand="lg">
       <Container>
