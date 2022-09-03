@@ -24,6 +24,8 @@
     "Footer":"Copyright",
     "Buy" : "Buy Now",
     "Cart":{
-        "Button" : "Add to cart"
+        "Button" : "Add to cart",
+        "Empty" : "Your cart is currently empty",
+        "Shopping" : "Go Shopping"
     }
 }

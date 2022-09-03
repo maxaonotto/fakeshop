@@ -1,23 +1,26 @@
 import React, { useContext } from "react";
-import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useSingleProduct from "../../../hooks/useSingleProduct.js";
+
 import {
   ThemeContext,
   makeThemeBgColor,
   makeThemeTextColor,
 } from "../../../util/ThemeUtil.js";
+import useProductId from "../../../hooks/useProductId.js";
 import { useTranslation } from "react-i18next";
+import { addToCart } from "../../../redux/reducer/cartReducer.js";
+import { useDispatch } from "react-redux";
 
 const ProductPage = () => {
   const { themeMode } = useContext(ThemeContext);
+  const [product] = useProductId();
   const { t } = useTranslation();
-  const [product] = useSingleProduct();
-
+  const dispatch = useDispatch();
   return (
     <Card
+      key={product.id}
       className={`flex-row bg-${makeThemeBgColor({ themeMode })} 
       text-center py-3 rounded-0`}
     >
@@ -39,10 +42,12 @@ const ProductPage = () => {
           <FontAwesomeIcon className="fs-5 px-1" icon={faStar} />
         </Card.Text>
         <Card.Text className="fw-bold fs-5 my-4">$ {product.price}</Card.Text>
-        <Card.Link as={Link} to="/cart">
-          {t("Buy")}
-        </Card.Link>
-        <Card.Link>{t("Cart.Button")}</Card.Link>
+        <Button
+          className="text-light bg-dark border-0"
+          onClick={() => dispatch(addToCart(product))}
+        >
+          {t("Cart.Button")}
+        </Button>
       </Card.Body>
     </Card>
   );
