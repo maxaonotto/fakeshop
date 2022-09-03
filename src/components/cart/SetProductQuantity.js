@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
-import {
-  decreaseQuantity,
-  increaseQuantity,
-} from "../../redux/reducer/cartReducer";
+
 import { Button, ButtonGroup, Col, Form } from "react-bootstrap";
 import { ThemeContext } from "../../util/ThemeUtil";
+import { handleDecrease, handleIncrease } from "../../redux/action";
 
-const SetQuantity = ({ quantity, product }) => {
+const SetProductQuantity = ({ quantity, productId }) => {
   const { themeMode } = useContext(ThemeContext);
   const dispatch = useDispatch();
 
@@ -17,7 +15,7 @@ const SetQuantity = ({ quantity, product }) => {
         <Button
           variant={themeMode === "light" ? "dark" : "light"}
           className="m-2"
-          onClick={() => dispatch(decreaseQuantity(product))}
+          onClick={() => handleDecrease(dispatch, productId)}
         >
           -
         </Button>
@@ -25,7 +23,7 @@ const SetQuantity = ({ quantity, product }) => {
         <Button
           variant={themeMode === "light" ? "dark" : "light"}
           className="m-2"
-          onClick={() => dispatch(increaseQuantity(product))}
+          onClick={() => handleIncrease(dispatch, productId)}
         >
           +
         </Button>
@@ -34,4 +32,4 @@ const SetQuantity = ({ quantity, product }) => {
   );
 };
 
-export default SetQuantity;
+export default SetProductQuantity;

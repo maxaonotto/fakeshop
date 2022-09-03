@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -6,14 +6,23 @@ import { selectCartAmount } from "../../redux/selectors/index.js";
 
 import EmptyCart from "../../components/cart/EmptyCart.js";
 import ProductsInCart from "../../components/cart/ProductsInCart.js";
+import {
+  makeThemeBgColor,
+  makeThemeTextColor,
+  ThemeContext,
+} from "../../util/ThemeUtil.js";
 
 const CartPage = () => {
-  const cartAmount = useSelector(selectCartAmount);
   const { t } = useTranslation();
+  const { themeMode } = useContext(ThemeContext);
+  const cartAmount = useSelector(selectCartAmount);
 
   return (
-    <Container fluid className="px-5">
-      <Row style={{ fontSize: "30px", width: "100%" }} className="fw-bold">
+    <Container fluid>
+      <Row
+        className={`px-3 fw-bold fs-2 bg-${makeThemeBgColor({ themeMode })} 
+        text-${makeThemeTextColor({ themeMode })}`}
+      >
         {t("Navbar.Cart")}
       </Row>
       {cartAmount === 0 ? <EmptyCart /> : <ProductsInCart />}

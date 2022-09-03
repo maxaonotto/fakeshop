@@ -3,12 +3,13 @@ import Login from "../../modal/Login";
 import Register from "../../modal/Register";
 import useAuthModal from "../../../hooks/useAuthModal";
 import { Button } from "react-bootstrap";
-import { t } from "i18next";
 import { ThemeContext } from "../../../util/ThemeUtil";
+import { useTranslation } from "react-i18next";
 
 const NavbarAuthorization = () => {
   const { themeMode } = useContext(ThemeContext);
   const [modal, setModal] = useAuthModal();
+  const { t } = useTranslation();
 
   return (
     <div>

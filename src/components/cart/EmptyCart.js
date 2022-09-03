@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import {
   makeThemeBgColor,
@@ -9,7 +10,7 @@ import {
 
 const EmptyCart = () => {
   const { themeMode } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   return (
     <Row
       style={{ height: "74vh", width: "100vw" }}
@@ -20,7 +21,7 @@ const EmptyCart = () => {
         style={{ fontSize: "50px", width: "100%" }}
         className={`fw-bold text-${makeThemeTextColor({ themeMode })}`}
       >
-        Your cart is currently empty
+        {t("Cart.Empty")}
       </Col>
       <Link to="/products">
         <Button
@@ -28,7 +29,7 @@ const EmptyCart = () => {
           style={{ width: "45%" }}
           className="py-3 mt-5 fw-bold"
         >
-          Go Shopping
+          {t("Cart.Shopping")}
         </Button>
       </Link>
     </Row>

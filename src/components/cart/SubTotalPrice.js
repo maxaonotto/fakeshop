@@ -2,12 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectCartTotal } from "../../redux/selectors";
 import { Button, Card } from "react-bootstrap";
-import useTotalPrice from "../../hooks/useTotalPrice.js";
 
 const SubTotalPrice = () => {
   const cartTotal = useSelector(selectCartTotal);
-  // eslint-disable-next-line
-  const totalPrice = useTotalPrice();
+
   return (
     <Card
       style={{ width: "45%" }}

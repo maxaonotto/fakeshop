@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getIndex = (state, action) => {
+  return state.cartList.findIndex((item) => item.id === action.payload);
+};
+
 const cartReducer = createSlice({
   name: "cart",
   initialState: {
@@ -11,55 +15,45 @@ const cartReducer = createSlice({
     clearCart(state) {
       state.cartList = [];
       state.cartAmount = 0;
+      state.cartTotal = 0;
     },
     addToCart(state, action) {
-      const itemIndex = state.cartList.findIndex(
-        (item) => item.id === action.payload.id
-      );
+      const itemIndex = getIndex(state, action);
       if (!(itemIndex >= 0)) {
         state.cartList.push({ ...action.payload, productQuantity: 1 });
         state.cartAmount += 1;
+        state.cartTotal += action.payload.price;
       }
     },
     deleteFromCart(state, action) {
-      const itemId = action.payload;
-      state.cartList = state.cartList.filter((item) => item.id !== itemId);
-      state.cartAmount -= 1;
+      const { productId, index } = action.payload;
+      state.cartAmount -= state.cartList[index].productQuantity;
+      state.cartTotal -=
+        state.cartList[index].price * state.cartList[index].productQuantity;
+      state.cartList = state.cartList.filter(
+        (cartItem) => cartItem.id !== productId
+      );
     },
     decreaseQuantity(state, action) {
-      const itemIndex = state.cartList.findIndex(
-        (item) => item.id === action.payload.id
-      );
+      const itemIndex = getIndex(state, action);
       if (state.cartList[itemIndex].productQuantity > 1) {
         state.cartList[itemIndex].productQuantity -= 1;
         state.cartAmount -= 1;
+        state.cartTotal -= state.cartList[itemIndex].price;
       } else if (state.cartList[itemIndex].productQuantity === 1) {
+        state.cartTotal -= state.cartList[itemIndex].price;
         const nextCartItems = state.cartList.filter(
-          (cartItem) => cartItem.id !== action.payload.id
+          (cartItem) => cartItem.id !== action.payload
         );
         state.cartList = nextCartItems;
         state.cartAmount -= 1;
       }
     },
     increaseQuantity(state, action) {
-      const itemIndex = state.cartList.findIndex(
-        (item) => item.id === action.payload.id
-      );
+      const itemIndex = getIndex(state, action);
       state.cartList[itemIndex].productQuantity += 1;
       state.cartAmount += 1;
-    },
-    totalPrice(state) {
-      let { total } = state.cartList.reduce(
-        (cartTotal, cartItem) => {
-          const { price, productQuantity } = cartItem;
-          const itemTotal = price * productQuantity;
-
-          cartTotal.total += itemTotal;
-          return cartTotal;
-        },
-        { total: 0 }
-      );
-      state.cartTotal = total;
+      state.cartTotal += state.cartList[itemIndex].price;
     },
   },
 });
@@ -70,6 +64,5 @@ export const {
   deleteFromCart,
   increaseQuantity,
   decreaseQuantity,
-  totalPrice,
 } = cartReducer.actions;
 export default cartReducer.reducer;
