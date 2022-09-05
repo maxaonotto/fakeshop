@@ -5,11 +5,7 @@ import UsersList from "./UsersList";
 import { logout } from "../../redux/reducer/userReducer";
 import { useDispatch } from "react-redux";
 const Admin = () => {
-  const dispatch = useDispatch();
-  const handleLogOut = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-  };
+
   return (
     <Container className="px-5">
       <Row className=" p-3 d-flex align-items-center">
@@ -18,7 +14,7 @@ const Admin = () => {
         </Col>
         <Col className="px-3 ">User Name</Col>
         <Col className="px-3">
-          <Button variant="dark" onClick={handleLogOut}>
+          <Button variant="dark">
             Log Out
           </Button>
         </Col>
