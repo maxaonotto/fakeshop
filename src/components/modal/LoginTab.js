@@ -44,21 +44,6 @@ const LoginTab = ({ onHide }) => {
           cookiePolicy={"single_host_origin"}
           buttonText="Login with Google"
         />
-        {/* <Button
-          clientId={clientId}
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          cookiePolicy={"single_host_origin"}
-          isSignedIn={true}
-          variant="outline-dark"
-        >
-          <Form className="d-flex justify-content-center align-items-center">
-            <Form.Group>
-              <FontAwesomeIcon icon={faGoogle} className="px-2" />
-              <Form.Label className="m-0">Login with Google</Form.Label>
-            </Form.Group>
-          </Form>
-        </Button> */}
       </Modal.Footer>
     </>
   );
