@@ -32,9 +32,6 @@ const Admin = () => {
             onLogoutSuccess={() => handleLogOut(dispatch)}
             clientId="688558443667-21hjlen2re7kncq8st7s7keu8eoh9s2i.apps.googleusercontent.com"
           />
-          {/* <Button variant="dark" onClick={handleLogOut}>
-            Log Out
-          </Button> */}
         </Col>
       </Row>
       <Table responsive bordered hover variant="light" size="md" className="">
