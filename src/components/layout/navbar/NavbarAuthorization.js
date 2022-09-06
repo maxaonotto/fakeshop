@@ -1,41 +1,41 @@
-import React, { useContext } from "react";
-import Login from "../../modal/Login";
-import Register from "../../modal/Register";
-import useAuthModal from "../../../hooks/useAuthModal";
+import React, { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLogin } from "../../../redux/selectors/index";
+
 import { Button } from "react-bootstrap";
 import { ThemeContext } from "../../../util/ThemeUtil";
 import { useTranslation } from "react-i18next";
+import Login from "../../modal/Login";
+import { handleLogOut } from "../../../redux/action";
 
 const NavbarAuthorization = () => {
-  const { themeMode } = useContext(ThemeContext);
-  const [modal, setModal] = useAuthModal();
   const { t } = useTranslation();
+  const { themeMode } = useContext(ThemeContext);
+  const [modal, setModal] = useState(false);
+  const isLogin = useSelector(selectLogin);
+  const dispatch = useDispatch();
 
   return (
-    <div>
-      <Button
-        className="me-2"
-        variant={`outline-${themeMode === "light" ? "dark" : "light"}`}
-        onClick={() => setModal({ ...modal, isLogin: true })}
-      >
-        {t("Navbar.LogIn")}
-      </Button>
-      <Login
-        show={modal.isLogin}
-        onHide={() => setModal({ ...modal, isLogin: false })}
-      />
-      <Button
-        className="me-2"
-        variant={themeMode === "light" ? "dark" : "light"}
-        onClick={() => setModal({ ...modal, isRegister: true })}
-      >
-        {t("Navbar.SignUp")}
-      </Button>
-      <Register
-        show={modal.isRegister}
-        onHide={() => setModal({ ...modal, isRegister: false })}
-      />
-    </div>
+    <>
+      {isLogin ? (
+        <Button
+          className="me-2"
+          onClick={() => handleLogOut(dispatch)}
+          variant={`${themeMode === "light" ? "dark" : "light"}`}
+        >
+          Log Out
+        </Button>
+      ) : (
+        <Button
+          className="me-2"
+          variant={`${themeMode === "light" ? "dark" : "light"}`}
+          onClick={() => setModal(true)}
+        >
+          {t("Navbar.LogIn")}
+        </Button>
+      )}
+      <Login show={modal} onHide={() => setModal(false)} />
+    </>
   );
 };
 
