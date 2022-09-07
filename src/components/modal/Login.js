@@ -1,42 +1,28 @@
+import { Tab, Tabs } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import LoginTab from "./LoginTab";
+import RegisterTab from "./RegisterTab";
 
-function Login(open) {
+function Login(props) {
   return (
     <Modal
-      {...open}
-      size="lg"
+      {...props}
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title>Glad to see You again (^3^)</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>User Name</Form.Label>
-            <Form.Control placeholder="Enter username" />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Admin" />
-          </Form.Group>
-          <Button variant="warning" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="warning" onClick={open.onHide}>
-          Close
-        </Button>
-      </Modal.Footer>
+      <Tabs
+        id="fill-tab-example"
+        transition={true}
+        className="fs-3 d-flex flex-row justify-content-around"
+      >
+        <Tab eventKey="home" title="Login" className="px-2">
+          <LoginTab onHide={props.onHide} />
+        </Tab>
+        <Tab eventKey="profile" title="Register" className="px-2">
+          <RegisterTab />
+        </Tab>
+      </Tabs>
     </Modal>
   );
 }

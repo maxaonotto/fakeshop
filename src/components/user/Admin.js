@@ -1,11 +1,24 @@
-import React from "react";
-import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Col, Container, Row, Table } from "react-bootstrap";
 import Avatar from "react-avatar";
 import UsersList from "./UsersList";
-import { logout } from "../../redux/reducer/userReducer";
 import { useDispatch } from "react-redux";
+import { gapi } from "gapi-script";
+import { GoogleLogout } from "react-google-login";
+import { handleLogOut } from "../../redux/action";
 const Admin = () => {
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId:
+          "688558443667-21hjlen2re7kncq8st7s7keu8eoh9s2i.apps.googleusercontent.com",
+        scope: "",
+      });
+      gapi.load("client: auth", start);
+    }
+  }, []);
   return (
     <Container className="px-5">
       <Row className=" p-3 d-flex align-items-center">
@@ -14,9 +27,11 @@ const Admin = () => {
         </Col>
         <Col className="px-3 ">User Name</Col>
         <Col className="px-3">
-          <Button variant="dark">
-            Log Out
-          </Button>
+          <GoogleLogout
+            buttonText={"Logout"}
+            onLogoutSuccess={() => handleLogOut(dispatch)}
+            clientId="688558443667-21hjlen2re7kncq8st7s7keu8eoh9s2i.apps.googleusercontent.com"
+          />
         </Col>
       </Row>
       <Table responsive bordered hover variant="light" size="md" className="">
