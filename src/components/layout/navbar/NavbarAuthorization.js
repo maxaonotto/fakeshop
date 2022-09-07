@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLogin } from "../../../redux/selectors/index";
+import { handleLogOut } from "../../../redux/action";
 
 import { Button } from "react-bootstrap";
 import { ThemeContext } from "../../../util/ThemeUtil";
 import { useTranslation } from "react-i18next";
 import Login from "../../modal/Login";
-import { handleLogOut } from "../../../redux/action";
 
 const NavbarAuthorization = () => {
   const { t } = useTranslation();

@@ -17,7 +17,7 @@ function Login(props) {
         className="fs-3 d-flex flex-row justify-content-around"
       >
         <Tab eventKey="home" title="Login" className="px-2">
-          <LoginTab {...props} />
+          <LoginTab onHide={props.onHide} />
         </Tab>
         <Tab eventKey="profile" title="Register" className="px-2">
           <RegisterTab />

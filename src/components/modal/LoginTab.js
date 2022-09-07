@@ -1,8 +1,9 @@
-import { Form, Modal } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/reducer/userReducer";
 import { GoogleLogin } from "react-google-login";
+import { Form, Modal } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+
 const LoginTab = ({ onHide }) => {
   const dispatch = useDispatch();
   const onSuccess = (res) => {
@@ -12,6 +13,7 @@ const LoginTab = ({ onHide }) => {
   const onFailure = (res) => {
     console.log("Login failed", res);
   };
+
   return (
     <>
       <Modal.Header closeButton>
@@ -44,21 +46,6 @@ const LoginTab = ({ onHide }) => {
           cookiePolicy={"single_host_origin"}
           buttonText="Login with Google"
         />
-        {/* <Button
-          clientId={clientId}
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          cookiePolicy={"single_host_origin"}
-          isSignedIn={true}
-          variant="outline-dark"
-        >
-          <Form className="d-flex justify-content-center align-items-center">
-            <Form.Group>
-              <FontAwesomeIcon icon={faGoogle} className="px-2" />
-              <Form.Label className="m-0">Login with Google</Form.Label>
-            </Form.Group>
-          </Form>
-        </Button> */}
       </Modal.Footer>
     </>
   );
