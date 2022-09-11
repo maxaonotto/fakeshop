@@ -20,7 +20,7 @@ function Login(props) {
           <LoginTab onHide={props.onHide} />
         </Tab>
         <Tab eventKey="profile" title="Register" className="px-2">
-          <RegisterTab />
+          <RegisterTab onHide={props.onHide} />
         </Tab>
       </Tabs>
     </Modal>

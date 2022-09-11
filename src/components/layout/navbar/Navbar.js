@@ -23,10 +23,10 @@ const Navbar = () => {
         <NavBar.Toggle aria-controls="navbar-light-example" />
         <NavBar.Collapse id="navbar-light-example">
           <NavbarCenter themeMode={themeMode} />
-          <NavbarAuthorization />
-          <NavbarCartButton />
-          <NavbarTranslation />
           <NavbarTheme />
+          <NavbarTranslation />
+          <NavbarCartButton />
+          <NavbarAuthorization />
         </NavBar.Collapse>
       </Container>
     </NavBar>

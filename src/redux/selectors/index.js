@@ -8,3 +8,5 @@ export const selectCartTotal = (state) => state.cart.cartTotal.toFixed(2);
 export const selectUserData = (state) => state.user.userData;
 
 export const selectLogin = (state) => state.user.isLoged;
+
+export const selectUserList = (state) => state.user.userList;

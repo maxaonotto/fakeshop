@@ -1,46 +1,38 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { selectUserData } from "../../redux/selectors";
+import { useSelector } from "react-redux";
+
 import { Col, Container, Row, Table } from "react-bootstrap";
 import Avatar from "react-avatar";
 import UsersList from "./UsersList";
-import { useDispatch } from "react-redux";
-import { gapi } from "gapi-script";
-import { GoogleLogout } from "react-google-login";
-import { handleLogOut } from "../../redux/action";
-const Admin = () => {
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId:
-          "688558443667-21hjlen2re7kncq8st7s7keu8eoh9s2i.apps.googleusercontent.com",
-        scope: "",
-      });
-      gapi.load("client: auth", start);
-    }
-  }, []);
+const Admin = () => {
+  const userData = useSelector(selectUserData);
+
   return (
     <Container className="px-5">
       <Row className=" p-3 d-flex align-items-center">
         <Col className="d-flex flex-row-reverse px-3">
-          <Avatar name={"User Name"} size="100" round={true} color={"grey"} />
-        </Col>
-        <Col className="px-3 ">User Name</Col>
-        <Col className="px-3">
-          <GoogleLogout
-            buttonText={"Logout"}
-            onLogoutSuccess={() => handleLogOut(dispatch)}
-            clientId="688558443667-21hjlen2re7kncq8st7s7keu8eoh9s2i.apps.googleusercontent.com"
+          <Avatar
+            src={userData.imageUrl}
+            name={`${userData.name?.firstname} ${userData.name?.lastname}`}
+            size="100"
+            round={true}
+            color={"grey"}
           />
         </Col>
+        <Col className="px-3 ">
+          {userData.name?.firstname} {userData.lastname}
+        </Col>
       </Row>
-      <Table responsive bordered hover variant="light" size="md" className="">
+      <Table responsive bordered hover variant="light" size="md">
         <thead>
           <tr>
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
             <th>Phone</th>
+            <th style={{ width: "7%" }}>Actions</th>
           </tr>
         </thead>
         <UsersList />

@@ -14,7 +14,7 @@ const NavbarCartButton = () => {
   return (
     <Nav.Link as={Link} to="/cart">
       <Button
-        className="me-3"
+        className="me-2"
         variant={`outline-${themeMode === "light" ? "dark" : "light"}`}
       >
         {t("Navbar.Cart")}
