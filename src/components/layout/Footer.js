@@ -16,6 +16,7 @@ const Footer = () => {
       fluid
       className={`bg-${makeThemeBgColor({ themeMode })} 
       text-center py-3`}
+      style={{ height: "6vh" }}
     >
       <Row>
         <Col className={`text-${makeThemeTextColor({ themeMode })}`}>

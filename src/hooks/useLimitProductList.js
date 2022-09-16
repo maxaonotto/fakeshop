@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getListOfProducts } from "../service/getProducts";
 
-export default function useLimitList(isLimited = false) {
+export default function useLimitProductList(isLimited = false) {
   const [list, setList] = useState([]);
   useEffect(() => {
     getListOfProducts(isLimited)

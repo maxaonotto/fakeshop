@@ -10,7 +10,7 @@ const NavbarTheme = () => {
   return (
     <FontAwesomeIcon
       as={Button}
-      className="fs-4"
+      className="fs-4 me-2"
       style={{
         color: themeMode === "light" ? "black" : "white",
         cursor: "pointer",

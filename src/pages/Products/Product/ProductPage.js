@@ -18,11 +18,13 @@ const ProductPage = () => {
   const [product] = useProductId();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
   return (
     <Card
       key={product.id}
       className={`flex-row bg-${makeThemeBgColor({ themeMode })} 
-      text-center py-3 rounded-0`}
+      text-center py-3 rounded-0 m-2`}
+      style={{ height: "80vh" }}
     >
       <Card.Img
         variant="left"
@@ -43,7 +45,8 @@ const ProductPage = () => {
         </Card.Text>
         <Card.Text className="fw-bold fs-5 my-4">$ {product.price}</Card.Text>
         <Button
-          className="text-light bg-dark border-0"
+          className={`text-${makeThemeBgColor({ themeMode })} 
+          bg-${makeThemeTextColor({ themeMode })} border-0`}
           onClick={() => dispatch(addToCart(product))}
         >
           {t("Cart.Button")}

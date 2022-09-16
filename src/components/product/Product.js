@@ -4,26 +4,25 @@ import Card from "react-bootstrap/Card";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../redux/reducer/cartReducer";
+import { handleAddToCart } from "../../redux/action";
 
 const Product = ({ data }) => {
   const { title, price, image, id } = data;
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
+  const addToCart = () => {
+    handleAddToCart(dispatch, data);
+  };
   return (
-    <Col className="col-md-3 mb-4">
-      <Card className="h-100 text-center p-4" key={id}>
+    <Col className="col-xs-7 col-sm-5 col-md-4 col-lg-4 col-xl-3 col-xxl-3 mb-4">
+      <Card className="h-100 text-center p-2" key={id}>
         <Link to={`/product/id=${id}`}>
           <Card.Img variant="top" style={{ height: "300px" }} src={image} />
         </Link>
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
+          <Card.Title className="fs-6">{title}</Card.Title>
           <Card.Text className="lead fw-bold">$ {price}</Card.Text>
-          <Button
-            className="text-light bg-dark border-0"
-            onClick={() => dispatch(addToCart(data))}
-          >
+          <Button className="text-light bg-dark border-0" onClick={addToCart}>
             {t("Cart.Button")}
           </Button>
         </Card.Body>

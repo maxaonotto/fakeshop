@@ -1,43 +1,42 @@
 import React, { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectCartList } from "../../redux/selectors";
 import { Link } from "react-router-dom";
 
-import { ThemeContext } from "../../util/ThemeUtil";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { makeThemeBgColor, ThemeContext } from "../../util/ThemeUtil";
+import { Card, Col, Row } from "react-bootstrap";
 import SetProductQuantity from "./SetProductQuantity";
-import { handleDeleteFromCart } from "../../redux/action";
+import EmptyCart from "./EmptyCart";
+import DeleteCartButton from "./buttons/DeleteCartButton";
 
 const ProductCartList = () => {
   const { themeMode } = useContext(ThemeContext);
   const cartList = useSelector(selectCartList);
-  const dispatch = useDispatch();
+
+  if (cartList.length === 0) {
+    return <EmptyCart />;
+  }
   return cartList.map((product, index) => (
-    <Row key={product.id} className=" my-2">
-      <Card>
+    <Row
+      key={product.id}
+      className={`px-3 bg-${makeThemeBgColor({ themeMode })}`}
+    >
+      <Card className="" style={{ height: "30vh" }}>
         <Card.Body className="d-flex flex-row mx-1 px-1 ">
           <Col sm={4} className="d-flex flex-row text-center">
             <Link to={`/product/id=${product.id}`}>
               <Card.Img
                 variant="left"
-                width="250px"
-                height="250px"
+                width="200px"
+                height="200px"
                 src={product.image}
-                className=""
               />
             </Link>
-
-            <Card.Title className="m-5">
-              <Card.Text className="text-uppercase">{product.title}</Card.Text>
-              <Button
-                variant={themeMode === "light" ? "dark" : "light"}
-                className="my-5 "
-                onClick={() =>
-                  handleDeleteFromCart(dispatch, product.id, index)
-                }
-              >
-                Delete
-              </Button>
+            <Card.Title className="pt-5 m-1">
+              <Card.Text className="text-uppercase fs-5">
+                {product.title}
+              </Card.Text>
+              <DeleteCartButton productId={product.id} index={index} />
             </Card.Title>
           </Col>
           <Col
@@ -45,10 +44,7 @@ const ProductCartList = () => {
             style={{ width: "100%" }}
             className="d-flex justify-content-center align-items-center"
           >
-            <Card.Text
-              variant={themeMode === "light" ? "dark" : "light"}
-              className="fw-bold fs-5"
-            >
+            <Card.Text variant="dark" className="fw-bold fs-5">
               $ {product.price}
             </Card.Text>
           </Col>
@@ -56,7 +52,10 @@ const ProductCartList = () => {
             productId={product.id}
             quantity={product.productQuantity}
           />
-          <Col sm className="d-flex justify-content-center align-items-center">
+          <Col
+            sm={3}
+            className="d-flex justify-content-center align-items-center"
+          >
             <Card.Text className="fw-bold fs-5">
               $ {(product.price * product.productQuantity).toFixed(2)}
             </Card.Text>

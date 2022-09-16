@@ -18,15 +18,15 @@ const Navbar = () => {
   const { themeMode } = useContext(ThemeContext);
   return (
     <NavBar bg={themeMode} variant={themeMode} expand="lg">
-      <Container>
+      <Container style={{ height: "6vh" }}>
         <NavbarLogo />
         <NavBar.Toggle aria-controls="navbar-light-example" />
         <NavBar.Collapse id="navbar-light-example">
           <NavbarCenter themeMode={themeMode} />
-          <NavbarAuthorization />
-          <NavbarCartButton />
-          <NavbarTranslation />
           <NavbarTheme />
+          <NavbarTranslation />
+          <NavbarCartButton />
+          <NavbarAuthorization />
         </NavBar.Collapse>
       </Container>
     </NavBar>
