@@ -3,14 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const getIndex = (state, action) => {
   return state.cartList.findIndex((item) => item.id === action.payload);
 };
+const initialState = {
+  cartAmount: 0,
+  cartTotal: 0,
+  cartList: [],
+};
 
 const cartReducer = createSlice({
   name: "cart",
-  initialState: {
-    cartList: [],
-    cartAmount: 0,
-    cartTotal: 0,
-  },
+  initialState,
   reducers: {
     clearCart(state) {
       state.cartList = [];
@@ -54,6 +55,14 @@ const cartReducer = createSlice({
       state.cartList[itemIndex].productQuantity += 1;
       state.cartAmount += 1;
       state.cartTotal += state.cartList[itemIndex].price;
+      // state.cartList = state.cartList.map((product) => {
+      //     if (product.id === action.payload.id) {
+      //       return { ...product,
+      //       product.productQuantity += 1,
+      //       state.cartAmount += 1,
+      //   state.cartTotal += product.price}
+      //     }}
+      // );
     },
   },
 });

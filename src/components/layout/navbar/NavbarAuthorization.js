@@ -14,9 +14,12 @@ const NavbarAuthorization = () => {
   const { t } = useTranslation();
   const { themeMode } = useContext(ThemeContext);
   const [modal, setModal] = useState(false);
+  const handleClose = () => setModal(false);
+  const handleOpen = () => setModal(true);
   const isLogin = useSelector(selectLogin);
   const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
+  const logOut = () => handleLogOut(dispatch);
 
   return (
     <>
@@ -24,7 +27,7 @@ const NavbarAuthorization = () => {
         <>
           <Button
             className="me-2"
-            onClick={() => handleLogOut(dispatch)}
+            onClick={logOut}
             variant={`${themeMode === "light" ? "dark" : "light"}`}
           >
             Log Out
@@ -43,13 +46,13 @@ const NavbarAuthorization = () => {
           <Button
             className="me-2"
             variant={`${themeMode === "light" ? "dark" : "light"}`}
-            onClick={() => setModal(true)}
+            onClick={handleOpen}
           >
             {t("Navbar.LogIn")}
           </Button>
         </>
       )}
-      <Login show={modal} onHide={() => setModal(false)} />
+      <Login show={modal} onHide={handleClose} />
     </>
   );
 };

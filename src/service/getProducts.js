@@ -2,7 +2,7 @@ import axios from "axios";
 const productUrl = "https://fakestoreapi.com/products";
 
 export const getListOfProducts = (limit = false) => {
-  return axios.get(`${productUrl}${limit ? "?limit=6" : ""}`);
+  return axios.get(`${productUrl}${limit ? "?limit=4" : ""}`);
 };
 
 export const getProduct = (id, setState) => {

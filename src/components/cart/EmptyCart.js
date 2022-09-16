@@ -13,21 +13,21 @@ const EmptyCart = () => {
   const { t } = useTranslation();
   return (
     <Row
-      style={{ height: "74vh", width: "100vw" }}
+      style={{ height: "65vh", width: "100vw" }}
       className={`bg-${makeThemeBgColor({ themeMode })} 
        text-center`}
     >
       <Col
         style={{ fontSize: "50px", width: "100%" }}
-        className={`fw-bold text-${makeThemeTextColor({ themeMode })}`}
+        className={`pt-5 fw-bold text-${makeThemeTextColor({ themeMode })}`}
       >
         {t("Cart.Empty")}
       </Col>
-      <Link to="/products">
+      <Link to="/products" style={{ height: "6vh" }}>
         <Button
           variant={`outline-${themeMode === "light" ? "dark" : "light"}`}
           style={{ width: "45%" }}
-          className="py-3 mt-5 fw-bold"
+          className="p-3 fw-bold"
         >
           {t("Cart.Shopping")}
         </Button>

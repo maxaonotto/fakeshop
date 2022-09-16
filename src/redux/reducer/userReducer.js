@@ -33,7 +33,6 @@ const userReducer = createSlice({
       state.userList = [...state.userList, action.payload];
     },
     editUser(state, action) {
-      console.log(action.payload);
       state.userList.map((user) =>
         user.id === action.payload.id ? { ...user, ...action.payload } : user
       );

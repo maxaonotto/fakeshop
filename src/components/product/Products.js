@@ -10,7 +10,10 @@ const Products = ({ isLimited }) => {
 
   return (
     <Container fluid className={makeThemeBgColor({ themeMode })}>
-      <Row>
+      <Row
+        className={`d-flex justify-content-center 
+        bg-${makeThemeBgColor({ themeMode })}`}
+      >
         {list.map((product) => (
           <Product key={product.id} data={product} />
         ))}

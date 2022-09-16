@@ -28,7 +28,7 @@ const UsersList = () => {
             <FontAwesomeIcon
               onClick={() => handleDeleteUser(dispatch, user.id)}
               as={Button}
-              className="p-1"
+              className="p-1 cursor-pointer"
               size="xl"
               icon={faTrash}
             />
