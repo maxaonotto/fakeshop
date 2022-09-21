@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { handleDeleteUser } from "../../redux/action";
+import useUsersList from "../../hooks/useUsersList";
+
+import { ThemeContext } from "../../util/ThemeUtil";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useUsersList from "../../hooks/useUsersList";
-import { useDispatch } from "react-redux";
-import { handleDeleteUser } from "../../redux/action";
+import { selectUserData } from "../../redux/selectors";
 
 const UsersList = () => {
+  const { themeMode } = useContext(ThemeContext);
   const dispatch = useDispatch();
+  const userData = useSelector(selectUserData);
   const [list] = useUsersList();
   return (
     list.length >= 1 &&
@@ -22,15 +26,18 @@ const UsersList = () => {
           <td>{user.email}</td>
           <td>{user.phone}</td>
           <td>
-            <Link to={`/user/id=${user.id}`} style={{ color: "black" }}>
+            <Link
+              to={`/user/id=${user.id || userData.googleId}`}
+              style={{ color: themeMode === "light" ? "black" : "White" }}
+            >
               <FontAwesomeIcon className="p-1 me-1" size="xl" icon={faPen} />
             </Link>
             <FontAwesomeIcon
-              onClick={() => handleDeleteUser(dispatch, user.id)}
-              as={Button}
-              className="p-1 cursor-pointer"
+              style={{ cursor: "pointer" }}
+              className="p-1"
               size="xl"
               icon={faTrash}
+              onClick={() => handleDeleteUser(dispatch, user.id)}
             />
           </td>
         </tr>

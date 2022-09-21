@@ -1,17 +1,14 @@
 import React from "react";
-// import About from "../../components/navigation/About";
-// import Contacts from "../../components/navigation/Contacts";
+import { Container } from "react-bootstrap";
 import Carousel from "../../components/navigation/Corausel";
 import Products from "../../components/product/Products";
 
 const HomePage = () => {
   return (
-    <>
+    <Container fluid>
       <Carousel />
       <Products isLimited />
-      {/* <About /> */}
-      {/* <Contacts /> */}
-    </>
+    </Container>
   );
 };
 

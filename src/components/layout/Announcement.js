@@ -15,7 +15,6 @@ const Announcement = () => {
       fluid
       className={`bg-${makeThemeBgColor({ themeMode })} 
       text-center text-uppercase py-1`}
-      style={{ height: "4vh" }}
     >
       <Row>
         <Col className={`text-${makeThemeTextColor({ themeMode })}`}>

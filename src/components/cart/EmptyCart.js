@@ -11,19 +11,19 @@ import {
 const EmptyCart = () => {
   const { themeMode } = useContext(ThemeContext);
   const { t } = useTranslation();
+
   return (
     <Row
-      style={{ height: "65vh", width: "100vw" }}
-      className={`bg-${makeThemeBgColor({ themeMode })} 
-       text-center`}
+      className={`text-center
+      bg-${makeThemeBgColor({ themeMode })}`}
     >
       <Col
-        style={{ fontSize: "50px", width: "100%" }}
-        className={`pt-5 fw-bold text-${makeThemeTextColor({ themeMode })}`}
+        style={{ fontSize: "50px" }}
+        className={`py-5 fw-bold text-${makeThemeTextColor({ themeMode })}`}
       >
         {t("Cart.Empty")}
       </Col>
-      <Link to="/products" style={{ height: "6vh" }}>
+      <Link to="/products" style={{ height: "6%" }} className="py-5">
         <Button
           variant={`outline-${themeMode === "light" ? "dark" : "light"}`}
           style={{ width: "45%" }}

@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { handleClearCart } from "../../../redux/action";
 import { selectCartList } from "../../../redux/selectors";
 import { ThemeContext } from "../../../util/ThemeUtil";
-import ConfirmationForCart from "../../modal/ConfirmationForCart";
+import Confirmation from "../../modal/Confirmation";
 
 const ClearCartButton = () => {
+  const { t } = useTranslation();
   const { themeMode } = useContext(ThemeContext);
   const [show, setShow] = useState(false);
   const cartList = useSelector(selectCartList);
@@ -29,9 +31,9 @@ const ClearCartButton = () => {
         className="py-3 ml-5 fw-bold"
         onClick={handleShow}
       >
-        Clear Cart
+        {t("Cart.Clear")}
       </Button>
-      <ConfirmationForCart
+      <Confirmation
         show={show}
         handleClose={handleClose}
         handleAction={clearCart}

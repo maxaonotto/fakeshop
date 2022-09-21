@@ -8,11 +8,11 @@ import {
 
 import { deleteUser, editUser, logout } from "../reducer/userReducer";
 // for cart
-export const handleDecrease = (dispatch, productId) => {
-  dispatch(decreaseQuantity(productId));
+export const handleDecrease = (dispatch, productId, index) => {
+  dispatch(decreaseQuantity({ productId, index }));
 };
-export const handleIncrease = (dispatch, productId) => {
-  dispatch(increaseQuantity(productId));
+export const handleIncrease = (dispatch, index) => {
+  dispatch(increaseQuantity(index));
 };
 export const handleDeleteFromCart = (dispatch, productId, index) => {
   dispatch(deleteFromCart({ productId, index }));

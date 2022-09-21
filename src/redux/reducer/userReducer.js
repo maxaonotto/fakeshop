@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userData: null,
   isLoged: false,
+  isAdmin: false,
   userList: [],
 };
 
@@ -30,7 +31,7 @@ const userReducer = createSlice({
       state.userData = action.payload;
       localStorage.setItem("UserData", JSON.stringify(action.payload));
       state.isLoged = true;
-      state.userList = [...state.userList, action.payload];
+      state.userList = [action.payload, ...state.userList];
     },
     editUser(state, action) {
       state.userList.map((user) =>
@@ -41,9 +42,19 @@ const userReducer = createSlice({
       if (state.userList.length <= 1)
         state.userList = [...state.userList, ...action.payload];
     },
+    setAdmin(state) {
+      state.isAdmin = true;
+    },
   },
 });
 
-export const { login, logout, setUsersList, deleteUser, editUser, addNewUser } =
-  userReducer.actions;
+export const {
+  login,
+  logout,
+  setUsersList,
+  deleteUser,
+  editUser,
+  addNewUser,
+  setAdmin,
+} = userReducer.actions;
 export default userReducer.reducer;

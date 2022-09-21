@@ -1,25 +1,41 @@
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/reducer/userReducer";
+import { login, setAdmin } from "../../redux/reducer/userReducer";
+import { loginUser } from "../../service/getAuthUser";
+import { useForm } from "react-hook-form";
+import { gapi } from "gapi-script";
 import { GoogleLogin } from "react-google-login";
+
 import { Form, Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { useForm } from "react-hook-form";
-import { loginUser } from "../../service/getAuthUser";
-import { gapi } from "gapi-script";
-import { useEffect } from "react";
 
 const LoginTab = ({ onHide }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
+  const [error, setError] = useState();
+  const handleCheckbox = () => {
+    dispatch(setAdmin());
+  };
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) =>
-    loginUser(data).then((res) => {
-      console.log(res.data.token);
-      onHide();
-    });
+    loginUser(data)
+      .then((res) => {
+        dispatch(
+          login({
+            token: res.data.token,
+            username: data.username,
+            firstname: "newUser",
+            lastname: "newUser",
+          })
+        );
+        onHide();
+      })
+      .catch((error) => setError(error.response.data));
   const onSuccess = (res) => {
     dispatch(login(res.profileObj));
     onHide();
@@ -38,17 +54,21 @@ const LoginTab = ({ onHide }) => {
       gapi.load("client: auth", start);
     }
   }, []);
+
   return (
     <>
       <Modal.Header closeButton>
-        <Modal.Title>Glad to see You (^3^)</Modal.Title>
+        <Modal.Title>{t("Modal.Greet")} (^3^)</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form.Label style={{ color: "red" }}>
+            {error && <span>{error}</span>}
+          </Form.Label>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>User Name</Form.Label>
+            <Form.Label>{t("Modal.Username")}</Form.Label>
             <Form.Control
-              placeholder="enter username"
+              placeholder="username"
               {...register("username", {
                 required: "username is required",
               })}
@@ -58,10 +78,10 @@ const LoginTab = ({ onHide }) => {
             </Form.Label>
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>{t("Modal.Password")}</Form.Label>
             <Form.Control
               type="password"
-              placeholder="enter password"
+              placeholder="password"
               {...register("password", {
                 required: "password is required",
               })}
@@ -74,9 +94,13 @@ const LoginTab = ({ onHide }) => {
             className="d-flex flex-row justify-content-between"
             controlId="formBasicCheckbox"
           >
-            <Form.Check type="checkbox" label="Admin" />
+            <Form.Check
+              type="checkbox"
+              label={t("Modal.Admin")}
+              onChange={handleCheckbox}
+            />
             <Button variant="dark" type="submit">
-              Submit
+              {t("Modal.Submit")}
             </Button>
           </Form.Group>
         </Form>

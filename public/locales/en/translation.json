@@ -1,31 +1,68 @@
 {
     "Navbar":{
         "Home": "Home",
-        "Category": {
-            "Categories":"Categories",
-            "WomensClothing":"Women's Clothing",
-            "MensClothing": "Men's Clothing",
-            "Jewelery": "Jewelery",
-            "Electronics":"Electronics",
-            "Allproducts": "All products"
-        },
         "About": "About",
-        "Contact": "Contact",
         "LogIn" : "Log In",
+        "LogOut" : "LogOut",
         "SignUp" : "Sign up",
+        "Products" : "Products",
         "Cart" : "Cart ",
         "Language": {
             "EN": "EN",
             "UA": "UA"
         }
     },
+    "Category": {
+        "Women":"Women's Clothing",
+        "Men": "Men's Clothing",
+        "Jewelery": "Jewelery",
+        "Electronic":"Electronics",
+        "All": "All"
+    },
+    "Modal":{
+        "Login" : "Login",
+        "Register" : "Register",
+        "Greet" : "Glad to see You",
+        "Password" : "Password",
+        "Username" : "User Name",
+        "Submit" : "Submit",
+        "Admin" : "Admin",
+        "Greet2" : "What a nice meeting",
+        "Name" : "First Name",
+        "Surname" : "Last Name",
+        "Email" : "Email",
+        "Phone" : "Phone",
+        "City" : "City",
+        "Street" : "Street",
+        "Zip" : "ZipCode",
+        "Number" : "Number",
+        "Save" : "Save",
+        "Action" : "Actions"
+    },
     "Announcement": "Fashion everywhere",
     "Rating":"Rating",
     "Footer":"Copyright",
-    "Buy" : "Buy Now",
     "Cart":{
         "Button" : "Add to cart",
         "Empty" : "Your cart is currently empty",
-        "Shopping" : "Go Shopping"
-    }
+        "Shopping" : "Go Shopping",
+        "Purchase" : "Purchase",
+        "Subtotal" : "Subtotal",
+        "Product" : "Product",
+        "Quantity" : "Quantity",
+        "Price" : " Price",
+        "Total" : "Total",
+        "Clear" : "Clear cart",
+        "Delete" : "Delete",
+        "Sure" : "Delete for sure?",
+        "Success" : "Purchase success",
+        "Enjoy" : "Enjoy your shopping",
+        "Again" : "Waiting for you again!"
+    },
+    "Limited" : "Limited products",
+    "Yes" : "Yes",
+    "No" : "No",
+    "NeedLogin" : "nothing to see here...need to login",
+    "LoadMore" : "Load More",
+    "ReadMore" : "Read More"
 }
