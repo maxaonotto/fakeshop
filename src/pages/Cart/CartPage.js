@@ -18,26 +18,25 @@ const CartPage = () => {
   return (
     <Container fluid>
       <Row
-        style={{ height: "6vh" }}
         className={`px-3 fw-bold fs-2 bg-${makeThemeBgColor({ themeMode })} 
         text-${makeThemeTextColor({ themeMode })}`}
       >
         {t("Navbar.Cart")}
       </Row>
       <Row
-        style={{ fontSize: 18, height: "3vh" }}
-        className={`mb-1 d-flex text-uppercase 
+        style={{ fontSize: 18 }}
+        className={`py-1 d-flex  text-uppercase 
         text-${makeThemeTextColor({ themeMode })}
         bg-${makeThemeBgColor({ themeMode })}`}
       >
-        <Col sm={5}>Product</Col>
-        <Col sm>Price</Col>
-        <Col sm>Quantity</Col>
-        <Col sm>Total</Col>
+        <Col sm={5}>{t("Cart.Product")}</Col>
+        <Col sm>{t("Cart.Price")}</Col>
+        <Col sm>{t("Cart.Quantity")}</Col>
+        <Col sm>{t("Cart.Total")}</Col>
       </Row>
       <ProductCartList />
       <Row
-        className={`pt-1 d-flex justify-content-around 
+        className={`pt-2 d-flex justify-content-around 
         bg-${makeThemeBgColor({ themeMode })}`}
       >
         <ClearCartButton />

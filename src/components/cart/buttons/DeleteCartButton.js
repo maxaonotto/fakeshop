@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { handleDeleteFromCart } from "../../../redux/action";
-import ConfirmationForCart from "../../modal/ConfirmationForCart";
+import Confirmation from "../../modal/Confirmation";
 
 const DeleteCartButton = ({ productId, index }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -17,9 +19,9 @@ const DeleteCartButton = ({ productId, index }) => {
   return (
     <>
       <Button variant="dark" className="my-1" onClick={handleShow}>
-        Delete
+        {t("Cart.Delete")}
       </Button>
-      <ConfirmationForCart
+      <Confirmation
         show={show}
         handleClose={handleClose}
         handleAction={deleteFromCart}

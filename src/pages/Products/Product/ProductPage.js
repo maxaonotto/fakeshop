@@ -21,17 +21,15 @@ const ProductPage = () => {
 
   return (
     <Card
-      key={product.id}
-      className={`flex-row bg-${makeThemeBgColor({ themeMode })} 
-      text-center py-3 rounded-0 m-2`}
-      style={{ height: "80vh" }}
+      className={`flex-xl-row flex-lg-column
+        justify-content-lg-center
+        bg-${makeThemeBgColor({ themeMode })} 
+      text-center p-3 rounded-0`}
     >
       <Card.Img
-        variant="left"
-        width="500px"
-        height="500px"
+        style={{ width: "50vw", height: "60vh" }}
         src={product.image}
-        className="mx-5 my-3"
+        className="mx-auto"
       />
       <Card.Body
         className={`md-6 px-5 text-${makeThemeTextColor({ themeMode })}`}

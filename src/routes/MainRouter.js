@@ -6,6 +6,7 @@ import UserPage from "../pages/User/UserPage";
 import AdminPage from "../pages/User/Admin/AdminPage";
 import ProductsPage from "../pages/Products/ProductsPage";
 import ProductPage from "../pages/Products/Product/ProductPage";
+import AboutPage from "../pages/About/AboutPage";
 import SharedLayout from "../components/layout/SharedLayout";
 
 const MainRouter = () => {
@@ -19,6 +20,7 @@ const MainRouter = () => {
           <Route path="product/id=:productId" element={<ProductPage />} />
           <Route path="user/id=:userId" element={<UserPage />} />
           <Route path="admin" element={<AdminPage />} />
+          <Route path="about" element={<AboutPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

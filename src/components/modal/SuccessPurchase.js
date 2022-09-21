@@ -1,16 +1,17 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const SuccessPurchase = ({ show, onHide }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal show={show} onHide={onHide} animation={false} size="md" centered>
       <Modal.Header className="">
-        <Modal.Title>Purchase success</Modal.Title>
+        <Modal.Title>{t("Cart.Success")}</Modal.Title>
       </Modal.Header>
-      <Modal.Body as="h3" className="">
-        Enjoy your shopping
-      </Modal.Body>
-      <Modal.Footer>Waiting for you again!</Modal.Footer>
+      <Modal.Body as="h3">{t("Cart.Enjoy")}</Modal.Body>
+      <Modal.Footer>{t("Cart.Again")}</Modal.Footer>
     </Modal>
   );
 };

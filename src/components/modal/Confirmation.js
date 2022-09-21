@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
-const ConfirmationForCart = ({ show, handleClose, handleAction }) => {
+const Confirmation = ({ show, handleClose, handleAction }) => {
+  const { t } = useTranslation();
   return (
     <Modal
       show={show}
@@ -11,18 +13,18 @@ const ConfirmationForCart = ({ show, handleClose, handleAction }) => {
       centered
     >
       <Modal.Header>
-        <Modal.Title>Delete for sure?</Modal.Title>
+        <Modal.Title>{t("Cart.Sure")}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex justify-content-around">
         <Button variant="dark" onClick={handleClose}>
-          No
+          {t("No")}
         </Button>
         <Button variant="dark" onClick={handleAction}>
-          Yes
+          {t("Yes")}
         </Button>
       </Modal.Body>
     </Modal>
   );
 };
 
-export default ConfirmationForCart;
+export default Confirmation;

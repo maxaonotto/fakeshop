@@ -11,8 +11,10 @@ import {
   makeThemeTextColor,
   ThemeContext,
 } from "../../util/ThemeUtil";
+import { useTranslation } from "react-i18next";
 
 const Corausel = () => {
+  const { t } = useTranslation();
   const { themeMode } = useContext(ThemeContext);
   return (
     <>
@@ -28,7 +30,7 @@ const Corausel = () => {
           className="d-flex justify-content-center"
         >
           <img
-            style={{ height: "90vh" }}
+            style={{ height: "90vh", width: "60vw" }}
             className="d-block "
             src={themeMode === "light" ? fas : fas_negate}
             alt="First slide"
@@ -39,7 +41,7 @@ const Corausel = () => {
           className="d-flex justify-content-center"
         >
           <img
-            style={{ height: "90vh" }}
+            style={{ height: "90vh", width: "60vw" }}
             className="d-block"
             src={themeMode === "light" ? fashion : fashion_negate}
             alt="Second slide"
@@ -50,7 +52,7 @@ const Corausel = () => {
           className="d-flex justify-content-center"
         >
           <img
-            style={{ height: "90vh" }}
+            style={{ height: "90vh", width: "60vw" }}
             className="d-block"
             src={themeMode === "light" ? fiawn : fiawn_negate}
             alt="Third slide"
@@ -63,7 +65,7 @@ const Corausel = () => {
       bg-${makeThemeBgColor({ themeMode })} 
       text-${makeThemeTextColor({ themeMode })}`}
       >
-        Limited Products
+        {t("Limited")}
       </section>
     </>
   );

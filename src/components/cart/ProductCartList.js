@@ -19,9 +19,10 @@ const ProductCartList = () => {
   return cartList.map((product, index) => (
     <Row
       key={product.id}
-      className={`px-3 bg-${makeThemeBgColor({ themeMode })}`}
+      className={`flex-xl-row flex-lg-column px-5 py-1 
+      bg-${makeThemeBgColor({ themeMode })}`}
     >
-      <Card className="" style={{ height: "30vh" }}>
+      <Card>
         <Card.Body className="d-flex flex-row mx-1 px-1 ">
           <Col sm={4} className="d-flex flex-row text-center">
             <Link to={`/product/id=${product.id}`}>
@@ -32,8 +33,8 @@ const ProductCartList = () => {
                 src={product.image}
               />
             </Link>
-            <Card.Title className="pt-5 m-1">
-              <Card.Text className="text-uppercase fs-5">
+            <Card.Title className="pt-3 m-1">
+              <Card.Text className="text-uppercase fs-6">
                 {product.title}
               </Card.Text>
               <DeleteCartButton productId={product.id} index={index} />
@@ -51,6 +52,7 @@ const ProductCartList = () => {
           <SetProductQuantity
             productId={product.id}
             quantity={product.productQuantity}
+            index={index}
           />
           <Col
             sm={3}

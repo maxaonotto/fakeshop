@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addNewUser } from "../../redux/reducer/userReducer";
+import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
 
 import Button from "react-bootstrap/Button";
@@ -10,6 +11,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 const RegisterTab = ({ onHide }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const {
     register,
@@ -17,7 +19,6 @@ const RegisterTab = ({ onHide }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     const user = {
       ...data,
       id: uuidv4(),
@@ -34,14 +35,14 @@ const RegisterTab = ({ onHide }) => {
     <>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          What a nice meeting (^_^)
+          {t("Modal.Greet2")} (^_^)
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridFirstName">
-              <Form.Label>First name</Form.Label>
+              <Form.Label>{t("Modal.Name")}</Form.Label>
               <Form.Control
                 placeholder="Enter your name"
                 {...register("firstname", {
@@ -54,7 +55,7 @@ const RegisterTab = ({ onHide }) => {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastName">
-              <Form.Label>Last name</Form.Label>
+              <Form.Label>{t("Modal.Surname")}</Form.Label>
               <Form.Control
                 placeholder="Enter your last name"
                 {...register("lastname", {
@@ -68,7 +69,7 @@ const RegisterTab = ({ onHide }) => {
           </Row>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Email</Form.Label>
+              <Form.Label>{t("Modal.Email")}</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
@@ -81,7 +82,7 @@ const RegisterTab = ({ onHide }) => {
               </Form.Label>
             </Form.Group>
             <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>{t("Modal.Password")}</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
@@ -96,7 +97,7 @@ const RegisterTab = ({ onHide }) => {
           </Row>
           <Row>
             <Form.Group as={Col} controlId="formGridUsername">
-              <Form.Label>UserName</Form.Label>
+              <Form.Label>{t("Modal.Username")}</Form.Label>
               <Form.Control
                 placeholder="Enter username"
                 {...register("username", {
@@ -108,7 +109,7 @@ const RegisterTab = ({ onHide }) => {
               </Form.Label>
             </Form.Group>
             <Form.Group className="mb-3" as={Col} controlId="formGridPhone">
-              <Form.Label>Phone</Form.Label>
+              <Form.Label>{t("Modal.Phone")}</Form.Label>
               <Form.Control
                 type="phone"
                 placeholder="Enter your phone number"
@@ -122,7 +123,7 @@ const RegisterTab = ({ onHide }) => {
             </Form.Group>
           </Row>
           <Button variant="dark" type="submit">
-            Submit
+            {t("Modal.Submit")}
           </Button>
         </Form>
       </Modal.Body>

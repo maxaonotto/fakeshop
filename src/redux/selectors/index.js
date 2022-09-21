@@ -10,3 +10,5 @@ export const selectUserData = (state) => state.user.userData;
 export const selectLogin = (state) => state.user.isLoged;
 
 export const selectUserList = (state) => state.user.userList;
+
+export const selectAdmin = (state) => state.user.isAdmin;

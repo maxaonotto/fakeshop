@@ -1,24 +1,26 @@
 import React, { useContext } from "react";
-import { Row, Container } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import useLimitProductList from "../../hooks/useLimitProductList";
 import { ThemeContext, makeThemeBgColor } from "../../util/ThemeUtil";
+import FilterProduct from "./FilterProduct";
 import Product from "./Product";
 
-const Products = ({ isLimited }) => {
+const Products = ({ isLimited, loadMore, isFilterVisible = false }) => {
   const { themeMode } = useContext(ThemeContext);
-  const [list] = useLimitProductList(isLimited);
+  const [list, setList] = useLimitProductList(isLimited);
 
   return (
-    <Container fluid className={makeThemeBgColor({ themeMode })}>
+    <>
+      {isFilterVisible && <FilterProduct setList={setList} />}
       <Row
-        className={`d-flex justify-content-center 
+        className={`m-0 d-flex justify-content-center 
         bg-${makeThemeBgColor({ themeMode })}`}
       >
-        {list.map((product) => (
+        {list.slice(0, loadMore).map((product) => (
           <Product key={product.id} data={product} />
         ))}
       </Row>
-    </Container>
+    </>
   );
 };
 
